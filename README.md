@@ -9,7 +9,7 @@ This is a simple snake & ladders simulation using OOP in cpp.
 To compile the project, run:
 
 ```bash
-g++ src/main.cpp -o out/main
+g++ src/main.cpp -o bin/main
 ```
 
 ## Running
@@ -17,5 +17,5 @@ g++ src/main.cpp -o out/main
 To run the project, first compile it, and then run:
 
 ```bash
-out/main
+bin/main
 ```
