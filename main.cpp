@@ -52,7 +52,7 @@ class Board {
     private:
         RNG dice;
         int turn = 1;
-    
+
 
         int ladders[3] = {1, 7, 15};
         int snakes[3] = {5, 8, 22};
@@ -67,22 +67,18 @@ class Board {
 
         void next() {
             // El número del turno (el primer turno se indica con el número 1)
-            cout << "El turno es ";
-            cout << turn << endl;
+            cout << turn << " ";
 
             // El número del jugador con el turno actual
-            cout << "Turno del Jugador ";
-            cout << current_player->get_id() << endl;
+            cout << current_player->get_id() << " ";;
 
             // El número de casilla correspondiente a la posición actual del Jugador
-            cout << "El jugador esta en la casilla ";
-            cout << current_player->get_position() << endl;
+            cout << current_player->get_position() << " ";
 
             // El número obtenido al simular un dado convencional de 6 caras
             int dice_roll = this->dice.generate();
 
-            cout << "Al tirar el dado se obtuvo ";
-            cout << dice_roll << endl;
+            cout << dice_roll << " ";
 
             // El tipo de casilla a la que el jugador debería moverse después de tirar el dado
             int new_position = current_player->get_position() + dice_roll;
@@ -106,20 +102,20 @@ class Board {
                     is_snake = true;
                 }
             }
-            
+
             if (is_snake) {
-                cout << "La nueva posicion es una serpiente! (S)" << endl;
+                cout << "S ";
                 new_position -= 3;
 
             }
 
             if (is_ladder) {
-                cout << "La nueva posicion es una escalera! (L)" << endl;
+                cout << "L ";
                 new_position += 3;
             }
 
             if (!is_ladder && !is_snake) {
-                cout << "La nueva posicion es normal (N)" << endl;
+                cout << "N ";
             }
 
             if (new_position < 0) {
@@ -133,36 +129,40 @@ class Board {
             current_player->set_position(new_position);
 
             // Imprimir la posicion final
-            cout << "La nueva posicion es ";
             cout << new_position << endl;
 
-            // Cicle logic
-            if (current_player == &this->player_1) {
-                current_player = &this->player_2; 
-            } else {
-                current_player = &this->player_1;
-            }
 
             if (new_position == 30) {
                 this->exit = true;
+            } else {
+                // Cicle logic
+                if (current_player == &this->player_1) {
+                    current_player = &this->player_2; 
+                } else {
+                    current_player = &this->player_1;
+                }
             }
 
             turn++;
         };
 
-        void play() {
+        void start() {
+            cout << "Press C to continue next turn, or E to end the game:" << endl;
+
             while (!this->exit) {
-                cout << "-------------" << endl;
                 this->next();
             }
+
+            cout << "-- GAME OVER --" << endl;
+            cout << "Player " << current_player->get_id() << " is the winner" << endl;
         };
 };
 
 
 int main() {
     Board board;
-    
-    board.play();
+
+    board.start();
 
     return 0;
 }
