@@ -151,10 +151,22 @@ class Board {
 
             while (!this->exit) {
                 this->next();
-            }
+                string c;
+                cin >> c;
+                if (c == "C") {
+                    continue;
+                }
 
+                if (c == "E") {
+                    this->exit = true;
+                }
+            }
+            
             cout << "-- GAME OVER --" << endl;
-            cout << "Player " << current_player->get_id() << " is the winner" << endl;
+
+            if (current_player->get_position() == 30) {
+                cout << "Player " << current_player->get_id() << " is the winner" << endl;
+            }
         };
 };
 
