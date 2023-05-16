@@ -1,7 +1,7 @@
-using namespace std;
 #include <iostream>
 #include <random>
 
+using namespace std;
 
 class RNG {
     private:
@@ -53,16 +53,27 @@ class Player {
 class Board {
     private:
         RNG dice;
-        int turn = 1;
-        int ladders[3] = {1, 7, 15};
-        int snakes[3] = {5, 8, 22};
+        int turn;
+        vector<int> ladders;
+        vector<int> snakes;
 
         Player player_1; 
         Player player_2;
-        Player* current_player = &player_1;
+        Player* current_player;
 
     public:
-        Board(): player_1(1, 1), player_2(1, 2), dice(1, 6) {};
+        Board(): player_1(1, 1), player_2(1, 2), dice(1, 6) {
+            turn = 1;
+            current_player = &player_1;
+
+            ladders.push_back(15);
+            ladders.push_back(7);
+            ladders.push_back(1);
+
+            snakes.push_back(22);
+            snakes.push_back(8);
+            snakes.push_back(5);
+        };
 
         bool check_continue() {
             if (this->turn == 1) {
