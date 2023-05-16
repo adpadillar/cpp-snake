@@ -4,6 +4,11 @@ This is a simple snake & ladders simulation using OOP in cpp.
 
 ![](./assets/board.jpg)
 
+
+## Instructions
+
+You can find the instructions for this activity [here](./assets/TC1030-t1-POO.pdf)
+
 ## Compiling
 
 To compile the project, run:
