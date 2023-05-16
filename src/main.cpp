@@ -14,6 +14,8 @@ class RNG {
             this->max = max;
         }
 
+        // https://stackoverflow.com/a/19728404/15165564
+        // Q: Generating a random integer from a range
         int generate() {
             std::random_device rd;     
             std::mt19937 rng(rd());    
